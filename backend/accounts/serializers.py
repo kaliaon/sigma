@@ -18,8 +18,8 @@ class RegisterSerializer(serializers.ModelSerializer):
         fields = ['username', 'password', 'password2', 'email', 'first_name', 'last_name']
         extra_kwargs = {
             'email': {'required': True},
-            'first_name': {'required': True},
-            'last_name': {'required': True}
+            'first_name': {'required': False},
+            'last_name': {'required': False}
         }
 
     def validate(self, attrs):
@@ -41,5 +41,11 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
 class LoginSerializer(serializers.Serializer):
-    username = serializers.CharField(required=True)
-    password = serializers.CharField(required=True, write_only=True) 
+    email = serializers.EmailField(required=False)
+    username = serializers.CharField(required=False)
+    password = serializers.CharField(required=True, write_only=True)
+    
+    def validate(self, attrs):
+        if not attrs.get('email') and not attrs.get('username'):
+            raise serializers.ValidationError("Either email or username is required")
+        return attrs 
