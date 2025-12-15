@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     
     # Local apps
     'accounts',
+    'quests',
+    'economy',
 ]
 
 MIDDLEWARE = [

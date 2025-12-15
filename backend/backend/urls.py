@@ -21,6 +21,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('accounts.urls')),
+    path('api/quests/', include('quests.urls')),
+    path('api/economy/', include('economy.urls')),
     path('api-auth/', include('rest_framework.urls')),  # DRF browsable API login
 ]
 

@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import '@/i18n/i18n'; // Initialize i18n
 import { AuthProvider, useAuth } from '@/contexts/auth-context';
 
 export const unstable_settings = {
@@ -20,7 +21,7 @@ function RootLayoutNav() {
   useEffect(() => {
     if (isLoading) return;
 
-    const inAuthGroup = segments[0] === '(tabs)';
+    const inAuthGroup = segments[0] === '(tabs)' || segments[0] === 'domains';
 
     if (!isAuthenticated && inAuthGroup) {
       router.replace('/login');

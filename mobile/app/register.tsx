@@ -45,7 +45,7 @@ export default function RegisterScreen() {
 
     setIsLoading(true);
     try {
-      await register({ email, username, password, password2 });
+      await register({ email, username, password });
       router.replace('/(tabs)');
     } catch (error: any) {
       const errorMessage =
@@ -75,7 +75,7 @@ export default function RegisterScreen() {
             <ThemedText type="title" style={styles.title}>
               Create Account
             </ThemedText>
-            <ThemedText style={styles.subtitle}>Join Sigma today</ThemedText>
+            <ThemedText style={styles.subtitle}>Join Qadam today</ThemedText>
 
             <TextInput
               style={[

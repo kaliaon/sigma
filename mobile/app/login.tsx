@@ -20,19 +20,19 @@ export default function LoginScreen() {
   const router = useRouter();
   const { login } = useAuth();
   const colorScheme = useColorScheme();
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = async () => {
-    if (!email || !password) {
+    if (!username || !password) {
       Alert.alert('Error', 'Please fill in all fields');
       return;
     }
 
     setIsLoading(true);
     try {
-      await login({ email, password });
+      await login({ username, password });
       router.replace('/(tabs)');
     } catch (error: any) {
       Alert.alert(
@@ -56,7 +56,7 @@ export default function LoginScreen() {
       >
         <View style={styles.content}>
           <ThemedText type="title" style={styles.title}>
-            Welcome to Sigma
+            Welcome to Qadam
           </ThemedText>
           <ThemedText style={styles.subtitle}>Sign in to continue</ThemedText>
 
@@ -69,12 +69,11 @@ export default function LoginScreen() {
                 color: Colors[colorScheme ?? 'light'].text,
               },
             ]}
-            placeholder="Email"
+            placeholder="Username"
             placeholderTextColor={Colors[colorScheme ?? 'light'].icon}
-            value={email}
-            onChangeText={setEmail}
+            value={username}
+            onChangeText={setUsername}
             autoCapitalize="none"
-            keyboardType="email-address"
             editable={!isLoading}
           />
 
